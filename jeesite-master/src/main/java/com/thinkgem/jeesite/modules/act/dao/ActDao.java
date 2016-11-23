@@ -9,7 +9,7 @@ import com.thinkgem.jeesite.modules.act.entity.Act;
 
 /**
  * 审批DAO接口
- * @author thinkgem
+ * @author lichuang
  * @version 2014-05-16
  */
 @MyBatisDao
