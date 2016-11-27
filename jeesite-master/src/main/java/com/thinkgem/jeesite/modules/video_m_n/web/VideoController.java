@@ -9,4 +9,5 @@ import com.thinkgem.jeesite.common.web.BaseController;
 @RequestMapping("videoController")
 public class VideoController extends BaseController {
 
+	
 }

@@ -7,4 +7,5 @@ import com.thinkgem.jeesite.common.service.BaseService;
 @Service
 public class VideoService extends BaseService {
 
+	
 }
