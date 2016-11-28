@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.thinkgem.jeesite.common.web.BaseController;
 
 @Controller
-@RequestMapping("videoController")
-public class VideoController extends BaseController {
+@RequestMapping(value = "${adminPath}/video_m_n/videotable")
+public class VideoTableController extends BaseController {
 
 	
 }

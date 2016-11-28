@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.thinkgem.jeesite.common.service.BaseService;
 
 @Service
-public class VideoService extends BaseService {
+public class VideoTableService extends BaseService {
 
 	
 }
