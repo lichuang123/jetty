@@ -144,8 +144,8 @@
         </section>
     </section>
 
-    <script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/scripts/script.js"></script>
 </body>
 
 </html>
