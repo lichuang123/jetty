@@ -14,6 +14,7 @@
     <result column="video_context" property="videoContext" jdbcType="VARCHAR" />
     <result column="video_createTime" property="videoCreatetime" jdbcType="TIMESTAMP" />
     <result column="video_createUser" property="videoCreateuser" jdbcType="VARCHAR" />
+    <result column="video_photo_url" property="videoPhotoUrl" jdbcType="VARCHAR" />
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />

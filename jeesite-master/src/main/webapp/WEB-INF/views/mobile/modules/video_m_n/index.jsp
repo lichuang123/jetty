@@ -90,7 +90,7 @@
                         <c:choose>
                         	<c:when test="${not empty v_list }">
                         		<c:forEach items="${v_list }" var="video">
-                        			<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>${video.video_name }</em>
+                        			<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>${video.video_name }${video.id }</em>
                         			<span><c:if test="${video.video_type==1 }">电视剧</c:if>
                         			<c:if test="${video.video_type==2 }">电影</c:if>
                         			<c:if test="${video.video_type==3 }">专题片</c:if></span></a></li>
