@@ -83,15 +83,25 @@
                     </div>
                     <div class="pagination"></div>
                 </section>
-                <section class="links clearfix"><a href="">听广播</a><a href="">听小说听小说</a><a href="">听小说</a><a href="">听小说</a><a href="">听小说</a></section>
+                <section class="links clearfix"><a href="">听广播</a><a href="">听小说</a><a href="">听小说</a><a href="">听小说</a><a href="">听小说</a></section>
                 <section class="list-box-con clearfix">
-                    <header>听广播<a href="">更多&gt;</a></header>
+                    <header>热点视频<a href="">更多&gt;</a></header>
                     <ul class="list-box-con-s clearfix">
+                        <c:choose>
+                        	<c:when test="${not empty v_list }">
+                        		<c:forEach items="${v_list }" var="video">
+                        			<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>video.video_name</em>
+                        			<span><c:if ${video.video_type==1 }>电视剧</c:if>
+                        			<span><c:if ${video.video_type==2 }>电影</c:if>
+                        			<span><c:if ${video.video_type==3 }>专题片</c:if></span></a></li>
+                        		</c:forEach>
+                        	</c:when>
+                        </c:choose>
+                        
+                        <%-- <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
                         <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
                         <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li> --%>
                     </ul>
                 </section>
                 <section class="list-box-con clearfix">
@@ -126,14 +136,14 @@
                 </section>
                 <header>新城区</header>
                 <section class="list">
-                    <a href=""><span>2016-08-26</span><img src="pic/pic1.png" /><em>2016年征兵公告2016年征兵公告2016年征兵公告2016年征兵公告</em></a>
+                    <a href=""><span>2016-08-26</span><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告2016年征兵公告2016年征兵公告2016年征兵公告</em></a>
                     <a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告</em><span>2016-08-26</span></a>
                     <a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告</em><span>2016-08-26</span></a>
                     <a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告</em><span>2016-08-26</span></a>
                 </section>
                 <header>回民区</header>
                 <section class="list">
-                    <a href=""><span>2016-08-26</span><img src="pic/pic1.png" /><em>2016年征兵公告2016年征兵公告2016年征兵公告2016年征兵公告</em></a>
+                    <a href=""><span>2016-08-26</span><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告2016年征兵公告2016年征兵公告2016年征兵公告</em></a>
                     <a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告</em><span>2016-08-26</span></a>
                     <a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告</em><span>2016-08-26</span></a>
                     <a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic1.png" /><em>2016年征兵公告</em><span>2016-08-26</span></a>
