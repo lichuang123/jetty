@@ -1,6 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -10,19 +11,22 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="email=no">
     <meta name="wap-font-scale" content="no">
-    <title>音频展示</title>
+    <title>详情2</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="Jason">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen" />
 </head>
-<style type="text/css">
-    .music_showPhoto{text-align: center;}
-</style>
+
 <body>
-    <header class="header pr">音频专区<a href="" class="back pa">&lt;返回</a><a href="" class="search-icon pa">搜索</a></header>
+    <header class="header pr">详情<a href="" class="back pa">&lt;返回</a><a href="" class="search-icon pa">搜索</a></header>
     <section class="page-box clearfix">
-        <div class="music_showPhoto"><img src="pic/pic2.png" align="" /></div>
+        <video id="myVideo" controls="controls" poster="pic/pic2.png" width="100%">
+            <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.mp4" type="video/mp4" />
+            <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.webm" type="video/webM" />
+            <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.ogv" type="video/ogg" />
+            <p>Your browser does not support the video tag.</p>
+        </video>
         <section class="page-links clearfix"><a href="">播放</a><a href="">下载</a></section>
         <section class="page-info clearfix">
             <header class="page-info-hd"><span>小说</span><h1>士兵突击</h1></header>
@@ -50,5 +54,4 @@
         </section>
     </section>
 </body>
-
 </html>

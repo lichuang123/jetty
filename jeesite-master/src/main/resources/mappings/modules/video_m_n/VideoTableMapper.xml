@@ -31,6 +31,33 @@
     id, video_name, video_type, video_belongto, video_context, video_createTime, video_createUser, 
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
+  
+  
+  <select id="selectHostVideo" resultType="java.util.Map" parameterType="java.util.Map" useCache="false">
+  	SELECT
+		vt.id id,
+		vt.video_name video_name,
+		vt.video_type video_type,
+		vt.video_belongto video_belongto,
+		vt.video_context video_context,
+		vt.video_createTime video_createTime,
+		vt.video_createUser video_createUser,
+		vtc.video_address video_address,
+		vtc.video_hite_count video_hite_count,
+		vtc.video_like_count video_like_count,
+		vtc.video_order video_order,
+		vtc.video_play_count video_play_count
+	FROM
+		video_table vt,video_table_count vtc
+	WHERE
+		vt.id = vtc.video_id
+	AND
+		vt.video_belongto = #{belongto}
+	ORDER BY
+		vt.video_createTime DESC
+	LIMIT #{start},#{pageSize}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
