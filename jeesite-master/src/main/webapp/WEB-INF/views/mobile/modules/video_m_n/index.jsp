@@ -90,18 +90,14 @@
                         <c:choose>
                         	<c:when test="${not empty v_list }">
                         		<c:forEach items="${v_list }" var="video">
-                        			<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>video.video_name</em>
+                        			<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>${video.video_name }</em>
                         			<span><c:if test="${video.video_type==1 }">电视剧</c:if>
                         			<c:if test="${video.video_type==2 }">电影</c:if>
                         			<c:if test="${video.video_type==3 }">专题片</c:if></span></a></li>
                         		</c:forEach>
                         	</c:when>
                         </c:choose>
-                        
-                        <%-- <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li> --%>
+                       
                     </ul>
                 </section>
                 <section class="list-box-con clearfix">
