@@ -3,8 +3,10 @@ package com.thinkgem.jeesite.modules.video_m_n.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTable;
 
+@MyBatisDao
 public interface VideoTableMapper {
 	
 	List<Map<String,Object>> selectHostVideo(Map<String,Object> map);

@@ -12,9 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.video_m_n.service.VideoTableService;
 
-/*@RequestMapping(value = "${adminPath}/video_m_n/videotable")*/
+
 @Controller
-@RequestMapping(value = "videoTableController")
+@RequestMapping(value = "${adminPath}/video_m_n/videotable")
 public class VideoTableController extends BaseController {
 
 	@Autowired
