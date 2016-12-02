@@ -14,6 +14,7 @@
     <result column="music_like_count" property="musicLikeCount" jdbcType="INTEGER" />
     <result column="music_hite_count" property="musicHiteCount" jdbcType="INTEGER" />
     <result column="music_order" property="musicOrder" jdbcType="INTEGER" />
+    <result column="music_down_address" property="musicDownAddress" jdbcType="VARCHAR" />
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />

@@ -32,6 +32,10 @@ public class VideoTableService extends BaseService {
 	@Autowired
 	private VideoTableCountMapper videoTableCountMapper;
 	
+	public List<Map<String,Object>> showPermissionVideo(Integer id){
+		return videoTableMapper.showPermissionVideo(id);
+	}
+	
 	@Transactional(readOnly = true)
 	public List<Map<String,Object>> selectHostVideo(Map<String,Object> map){
 		return videoTableMapper.selectHostVideo(map);

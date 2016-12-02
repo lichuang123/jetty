@@ -55,15 +55,13 @@ a{text-decoration:none}
 .clearfix:after{clear:both}
 
 
-
-
 /*list*/
 .header{ text-align:center; font-size:1.25rem; height:3rem; line-height:3rem;border-bottom:1px solid #ccc}
 .header a{ top:0; height:3rem; line-height:3rem; display:block; font-size:1rem;color:blue}
 .header .back{ left:10px; }
 .header .search-icon{right:10px; top:.5rem; height:2rem; width:2rem; border-radius:100%; text-indent:-9999rem; background: url('../images/search.png') center center no-repeat; background-size: 100% auto} 
 .links{ padding:.25rem 0 1rem;}
-.links a{ height:1.5rem; line-height:1.5rem; font-size:.875rem; color:#666; display:block; float:left; border:1px solid #ccc; padding:0 10px; border-radius:1rem;  margin:.65rem .5rem 0;}
+.links a{ height:1.5rem; line-height:1.5rem; font-size:.875rem; color:#666; display:block; float:left; border:1px solid #ccc; padding:0 10px; border-radius:1rem; width:80px;text-align:center;margin:0.65rem 4.5% auto 4%;}
 .list-box-con{ border-top:.5rem solid #ccc}
 .list-box-con header a{ display:inline-block; height:1.5rem; line-height:1.5rem; float:right; margin-right:.5rem; font-size:.75rem; color:#666}
 .list-box-con-s{border-top:1px solid #ccc}
@@ -99,7 +97,8 @@ a{text-decoration:none}
 .page-related em{ display: block; margin: 1.25rem 0 0;}
 .page-related-list-2 a{ font-size: 1.25rem; display: inline-block; padding: .5rem; height: 1.5rem; width: 1.5rem; line-height: 1.5rem; text-align: center; color: #000; border-radius: 100%; font-weight: 700;margin-top: 1rem;}
 .page-related-list-2 a.on{ background-color: red; color: #fff; }
-.page-related-list-2 a:last-child{width: auto; font-size: .875rem; font-weight: 100;}
+/* .page-related-list-2 a:last-child{width: auto; font-size: .875rem; font-weight: 100;} */
+/* .page-related-list-2 a:last-child{width: auto;} */
 
 /*search*/
 .search-con{width:100%; padding:0 4rem 1rem 1rem; margin-top:1rem; box-sizing: border-box;border-bottom:1px solid #ccc}
@@ -152,6 +151,10 @@ a{text-decoration:none}
 
 .tab-con-2s li:last-child{ border-bottom: none }
 
+/* fenye */
+.fenye{ text-align:center; padding-top:.65rem; padding-bottom:1rem;}
+.fenye a{ display:inline-block; padding:3px 8px; background:#fff; border:1px solid #ddd; color:#666; cursor:pointer;}
+.fenye a:hover{ background:#f3f3f3;}
 /* .tab-con-2s li:last-child a:before,.tab-con-2s li:last-child a:after{content: ""; display: block; position: absolute; left: 0;top: 50%; height: 1px; width: 100%;background:linear-gradient(to right,#5b2238, #5b2238 40%,rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%,#5b2238 60%,#5b2238); margin-top:-3px;} */
 
 

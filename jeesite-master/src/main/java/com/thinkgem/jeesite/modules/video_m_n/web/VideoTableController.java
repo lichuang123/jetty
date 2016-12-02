@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.thinkgem.jeesite.common.web.BaseController;
@@ -39,5 +42,22 @@ public class VideoTableController extends BaseController {
 		return mv;
 		
 		//return "modules/video_m_n/index";
+	}
+	
+	@RequestMapping(value="showVideoPermission",method=RequestMethod.GET)
+	public ModelAndView showVideoPermission(@RequestParam("id")Integer id){
+		ModelAndView mv = new ModelAndView();
+		List<Map<String,Object>> list = videoTableService.showPermissionVideo(id);
+		log.debug("==================sohwVideoPermission==============="+list);
+		mv.addObject("list", list);
+		if(list.size()>0) mv.addObject("list_0", list.get(0));
+		else mv.addObject("list_0", null);
+		mv.setViewName("modules/video_m_n/page2");
+		return mv;
+	}
+	
+	@RequestMapping(value="fileDownload",method=RequestMethod.GET)
+	public void fileDownload(@RequestParam("id")Integer id,HttpServletRequest request){
+		
 	}
 }

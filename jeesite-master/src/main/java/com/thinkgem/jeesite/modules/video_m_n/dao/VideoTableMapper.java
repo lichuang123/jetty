@@ -9,6 +9,8 @@ import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTable;
 @MyBatisDao
 public interface VideoTableMapper {
 	
+	List<Map<String,Object>> showPermissionVideo(Integer id);
+	
 	List<Map<String,Object>> selectHostVideo(Map<String,Object> map);
 	
     /**
