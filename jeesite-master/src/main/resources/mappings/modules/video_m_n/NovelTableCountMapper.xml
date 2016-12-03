@@ -14,6 +14,7 @@
     <result column="novel_like_count" property="novelLikeCount" jdbcType="INTEGER" />
     <result column="novel_hite_count" property="novelHiteCount" jdbcType="INTEGER" />
     <result column="novel_order" property="novelOrder" jdbcType="INTEGER" />
+    <result column="novel_down_address" property="novelDownAddress" jdbcType="VARCHAR" />
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />

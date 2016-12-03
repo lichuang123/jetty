@@ -14,6 +14,7 @@
     <result column="music_context" property="musicContext" jdbcType="VARCHAR" />
     <result column="music_createTime" property="musicCreatetime" jdbcType="TIMESTAMP" />
     <result column="music_createUser" property="musicCreateuser" jdbcType="VARCHAR" />
+    <result column="music_photo_url" property="musicPhotoUrl" jdbcType="VARCHAR" />
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />

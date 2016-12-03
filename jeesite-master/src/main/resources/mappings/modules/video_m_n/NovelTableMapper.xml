@@ -14,6 +14,7 @@
     <result column="novel_context" property="novelContext" jdbcType="VARCHAR" />
     <result column="novel_createTime" property="novelCreatetime" jdbcType="TIMESTAMP" />
     <result column="novel_createUser" property="novelCreateuser" jdbcType="VARCHAR" />
+    <result column="novel_photo_url" property="novelPhotoUrl" jdbcType="VARCHAR" />
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />

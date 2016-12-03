@@ -14,6 +14,7 @@
     <result column="video_like_count" property="videoLikeCount" jdbcType="INTEGER" />
     <result column="video_hite_count" property="videoHiteCount" jdbcType="INTEGER" />
     <result column="video_order" property="videoOrder" jdbcType="INTEGER" />
+    <result column="video_down_address" property="videoDownAddress" jdbcType="VARCHAR"/>
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />

@@ -14,6 +14,7 @@
     <result column="video_context" property="videoContext" jdbcType="VARCHAR" />
     <result column="video_createTime" property="videoCreatetime" jdbcType="TIMESTAMP" />
     <result column="video_createUser" property="videoCreateuser" jdbcType="VARCHAR" />
+    <result column="video_photo_url" property="videoPhotoUrl" jdbcType="VARCHAR" />
     <result column="ATTRA" property="attra" jdbcType="VARCHAR" />
     <result column="ATTRB" property="attrb" jdbcType="VARCHAR" />
     <result column="ATTRC" property="attrc" jdbcType="VARCHAR" />
@@ -31,31 +32,118 @@
     id, video_name, video_type, video_belongto, video_context, video_createTime, video_createUser, 
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
-  
-  
-  <select id="selectHostVideo" resultType="java.util.Map" parameterType="java.util.Map" useCache="false">
+  <!-- 查询三种次数 -->
+  <select id="selectThreeCount" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
   	SELECT
-		vt.id id,
+		video_play_count,
+		video_like_count,
+		video_hite_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId}
+  </select>
+  
+  <!-- 修改视频不喜欢次数 -->
+  <update id="updateVideoHiteCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE video_table_count
+	SET video_hite_count = #{count}
+	WHERE
+		id = #{vtcId}
+  </update>
+  <select id="selectHiteCountById" parameterType="java.lang.Integer" resultType="java.lang.Integer" useCache="false">
+  	SELECT
+		video_hite_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId}
+  </select>
+  
+  <!-- 修改视频点赞次数 -->
+  <update id="updateVideoLikeCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE video_table_count
+	SET video_like_count = #{count}
+	WHERE
+		id = #{vtcId}
+  </update>
+  <select id="selectLikeCountById" parameterType="java.lang.Integer" resultType="java.lang.Integer" useCache="false">
+  	SELECT
+		CASE WHEN video_like_count IS NULL THEN 0
+		ELSE video_like_count END video_like_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId};
+  </select>
+  
+  <!-- 修改视频观看次数 -->
+  <update id="updateVideoPlayCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE video_table_count
+	SET video_play_count = #{count}
+	WHERE
+		id = #{vtcId}
+  </update>
+  <select id="selectPlayCountById" parameterType="java.lang.Integer" resultType="java.lang.Integer" useCache="false">
+  	SELECT
+		CASE WHEN video_play_count IS NULL THEN 0
+		ELSE video_play_count END video_play_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId}
+  </select>
+  
+  <!-- 查询下载地址 -->
+  <select id="selectDownAddressById" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
 		vt.video_name video_name,
-		vt.video_type video_type,
-		vt.video_belongto video_belongto,
-		vt.video_context video_context,
-		vt.video_createTime video_createTime,
-		vt.video_createUser video_createUser,
-		vtc.video_address video_address,
-		vtc.video_hite_count video_hite_count,
-		vtc.video_like_count video_like_count,
-		vtc.video_order video_order,
-		vtc.video_play_count video_play_count
+		vtc.video_down_address video_down_address
 	FROM
 		video_table vt,video_table_count vtc
 	WHERE
 		vt.id = vtc.video_id
 	AND
-		vt.video_belongto = #{belongto}
-	ORDER BY
-		vt.video_createTime DESC
-	LIMIT #{start},#{pageSize}
+		vtc.id = #{vtcId}
+  </select>
+  
+  <!-- 展示详情 -->
+  <select id="showPermissionVideo" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		vt.id,
+		vtc.id vtcId,
+		vt.video_name,
+		vt.video_type,
+		vt.video_photo_url,
+		vt.video_context,
+		vtc.video_address,
+		CASE WHEN vtc.video_hite_count is NULL THEN 0
+		else vtc.video_hite_count END video_hite_count,
+		CASE WHEN vtc.video_like_count is NULL THEN 0
+		else vtc.video_like_count END video_like_count,
+		vtc.video_order,
+		case WHEN vtc.video_play_count is NULL THEN 0 
+		else vtc.video_play_count END video_play_count
+	FROM
+		video_table vt,video_table_count vtc
+	WHERE
+		vt.id = vtc.video_id
+	AND
+		vt.id = #{id}
+  </select>
+  
+  <!-- 首页热点视频 -->
+  <select id="selectHostVideo" resultType="java.util.Map" parameterType="java.util.Map" useCache="false">
+  	SELECT
+		id,
+		video_name,
+		video_type,
+		video_photo_url
+	FROM
+		video_table
+	WHERE
+		video_belongto = #{belongto}
+	limit #{start},#{pageSize}
   </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

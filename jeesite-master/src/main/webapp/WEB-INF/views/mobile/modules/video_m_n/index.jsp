@@ -71,6 +71,9 @@
                     <li><a href="">更多</a></li>
                 </ul>
             </section>
+            
+            
+<!-- 首页开始//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <section class="tab-con-s tab-con-3" style=" display:block;">
                 <section class="rotator">
                     <div class="swiper-container">
@@ -83,25 +86,24 @@
                     </div>
                     <div class="pagination"></div>
                 </section>
-                <section class="links clearfix"><a href="">听广播</a><a href="">听小说</a><a href="">听小说</a><a href="">听小说</a><a href="">听小说</a></section>
+                <section class="links clearfix"><a href="">影视专区</a><a href="">音频专区</a><a href="">阅读专区</a></section>
                 <section class="list-box-con clearfix">
                     <header>热点视频<a href="">更多&gt;</a></header>
                     <ul class="list-box-con-s clearfix">
                         <c:choose>
                         	<c:when test="${not empty v_list }">
                         		<c:forEach items="${v_list }" var="video">
-                        			<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>${video.video_name }</em>
+                        			<li><a onclick="showVideoPermission(${video.id});"><img src="${video.video_photo_url }" /><em>${video.video_name }</em>
                         			<span><c:if test="${video.video_type==1 }">电视剧</c:if>
                         			<c:if test="${video.video_type==2 }">电影</c:if>
                         			<c:if test="${video.video_type==3 }">专题片</c:if></span></a></li>
                         		</c:forEach>
                         	</c:when>
                         </c:choose>
-                       
                     </ul>
                 </section>
                 <section class="list-box-con clearfix">
-                    <header>听广播<a href="">更多&gt;</a></header>
+                    <header>热门音频<a href="">更多&gt;</a></header>
                     <ul class="list-box-con-s clearfix">
                         <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
                         <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
@@ -122,6 +124,9 @@
                 </section>
 
             </section>
+            
+            
+ <!-- 首页结束//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->           
             <section class="tab-con-s tab-con-4" style=" display:none;">
                 <header>呼和浩特地区</header>
                 <section class="list">
@@ -152,6 +157,7 @@
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/scripts/script.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/index.js"></script>
 </body>
 
 </html>
