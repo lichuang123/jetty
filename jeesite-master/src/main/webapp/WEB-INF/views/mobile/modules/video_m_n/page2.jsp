@@ -30,7 +30,7 @@
 	            <p>Your browser does not support the video tag.</p>
 	        </video>
 	        <input type="hidden" id="currentTime"/>
-	        <section class="page-links clearfix"><a onclick="play('${list_0.video_address }');" id="playOrpused">播放</a><a >下载</a></section>
+	        <section class="page-links clearfix"><a onclick="play('${list_0.video_address }');" id="playOrpused">播放</a><a onclick="downLoad('${list_0.vtcId}')">下载</a></section>
 	        <section class="page-info clearfix">
 	            <header class="page-info-hd">
 	            	<span>
@@ -40,10 +40,11 @@
 	            	</span>
 	            <h1>${list_0.video_name }</h1></header>
 	            <p class="page-info-s">摘要：${list_0.video_context }</p>
+	            <input type="hidden" id="video_like_hite_vtcId" value="${list_0.vtcId }"/>
 	            <section class="page-info-reading">
-	            <a href="">${list_0.video_hite_count }</a>
-	            <a href="">${list_0.video_like_count }</a>
-	            <span>观看${list_0.video_play_count }次</span></section>
+	            <a onclick="videoHiteChange();" id="videoHiteId">${list_0.video_hite_count }</a>
+	            <a onclick="videoLikeChange();" id="videoLikeId" >${list_0.video_like_count }</a>
+	            <span id="play_span">观看${list_0.video_play_count }次</span></section>
 	        </section>
         <section class="page-related clearfix">
 		<em>剧集</em>
@@ -52,7 +53,7 @@
 	    		<c:when test="${not empty list }">
 	    			<c:forEach items="${list }" var="video">
 	    					<c:if test="${video.video_order<=10 }">
-	    						<a id="chooseOrder${video.video_order }" onclick="chooseOrder('${video.video_address}','${video.video_order }')" <c:if test="${video.video_order==1 }"> class="on"</c:if>>${video.video_order }</a>
+	    						<a id="chooseOrder${video.video_order }" onclick="chooseOrder('${video.video_address}','${video.video_order }','${video.vtcId }')" <c:if test="${video.video_order==1 }"> class="on"</c:if>>${video.video_order }</a>
 	    					</c:if>
 	    					<c:if test="${video.video_order>10 }"><a href="">更多&gt;&gt;</a></c:if>
 	    			</c:forEach>

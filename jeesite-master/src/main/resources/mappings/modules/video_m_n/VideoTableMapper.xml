@@ -32,10 +32,86 @@
     id, video_name, video_type, video_belongto, video_context, video_createTime, video_createUser, 
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
+  <!-- 查询三种次数 -->
+  <select id="selectThreeCount" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		video_play_count,
+		video_like_count,
+		video_hite_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId}
+  </select>
   
+  <!-- 修改视频不喜欢次数 -->
+  <update id="updateVideoHiteCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE video_table_count
+	SET video_hite_count = #{count}
+	WHERE
+		id = #{vtcId}
+  </update>
+  <select id="selectHiteCountById" parameterType="java.lang.Integer" resultType="java.lang.Integer" useCache="false">
+  	SELECT
+		video_hite_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId}
+  </select>
+  
+  <!-- 修改视频点赞次数 -->
+  <update id="updateVideoLikeCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE video_table_count
+	SET video_like_count = #{count}
+	WHERE
+		id = #{vtcId}
+  </update>
+  <select id="selectLikeCountById" parameterType="java.lang.Integer" resultType="java.lang.Integer" useCache="false">
+  	SELECT
+		CASE WHEN video_like_count IS NULL THEN 0
+		ELSE video_like_count END video_like_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId};
+  </select>
+  
+  <!-- 修改视频观看次数 -->
+  <update id="updateVideoPlayCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE video_table_count
+	SET video_play_count = #{count}
+	WHERE
+		id = #{vtcId}
+  </update>
+  <select id="selectPlayCountById" parameterType="java.lang.Integer" resultType="java.lang.Integer" useCache="false">
+  	SELECT
+		CASE WHEN video_play_count IS NULL THEN 0
+		ELSE video_play_count END video_play_count
+	FROM
+		video_table_count
+	WHERE
+		id = #{vtcId}
+  </select>
+  
+  <!-- 查询下载地址 -->
+  <select id="selectDownAddressById" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		vt.video_name video_name,
+		vtc.video_down_address video_down_address
+	FROM
+		video_table vt,video_table_count vtc
+	WHERE
+		vt.id = vtc.video_id
+	AND
+		vtc.id = #{vtcId}
+  </select>
+  
+  <!-- 展示详情 -->
   <select id="showPermissionVideo" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
   	SELECT
 		vt.id,
+		vtc.id vtcId,
 		vt.video_name,
 		vt.video_type,
 		vt.video_photo_url,

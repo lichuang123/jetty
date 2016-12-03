@@ -61,7 +61,7 @@ a{text-decoration:none}
 .header .back{ left:10px; }
 .header .search-icon{right:10px; top:.5rem; height:2rem; width:2rem; border-radius:100%; text-indent:-9999rem; background: url('../images/search.png') center center no-repeat; background-size: 100% auto} 
 .links{ padding:.25rem 0 1rem;}
-.links a{ height:1.5rem; line-height:1.5rem; font-size:.875rem; color:#666; display:block; float:left; border:1px solid #ccc; padding:0 10px; border-radius:1rem; width:80px;text-align:center;margin:0.65rem 4.5% auto 4%;}
+.links a{ height:1.5rem; line-height:1.5rem; font-size:.875rem; color:#666; display:block; float:left; border:1px solid #ccc; padding:0 10px; border-radius:1rem; width:80px;text-align:center;margin:0.65rem 3% auto 2%;}
 .list-box-con{ border-top:.5rem solid #ccc}
 .list-box-con header a{ display:inline-block; height:1.5rem; line-height:1.5rem; float:right; margin-right:.5rem; font-size:.75rem; color:#666}
 .list-box-con-s{border-top:1px solid #ccc}
@@ -84,8 +84,12 @@ a{text-decoration:none}
 .page-info-s{ margin-top: 1rem; font-size: .875rem; line-height: 1.25rem }
 .page-info-reading{ margin-top: 1rem; height: 1.5rem; line-height: 1.5rem; font-size: .875rem }
 .page-info-reading a{ display: inline-block; padding-left: 1.5rem; margin-left: .5rem; color: #666; position: relative}
-.page-info-reading a:before{ content: ""; display: block; position: absolute; left: 0; top: 0; width: 1.5rem; height: 1.5rem; background: url('../images/up.png') center center no-repeat; background-size:  auto 100%}
+
 .page-info-reading a:first-child:before{ background: url('../images/tread.png') center center no-repeat;background-size:  auto 100%}
+.page-info-reading a:before{ content: ""; display: block; position: absolute; left: 0; top: 0; width: 1.5rem; height: 1.5rem; background: url('../images/up.png') center center no-repeat; background-size:  auto 100%}
+
+/* .videoLikeId :before{ content: ""; display: block; position: absolute; left: 0; top: 0; width: 1.5rem; height: 1.5rem; background: url('../images/up.png') center center no-repeat; background-size:  auto 100%}
+.videoHiteId :before{ background: url('../images/tread.png') center center no-repeat;background-size:  auto 100%} */
 
 .page-related header{ text-align: center; font-size: 1.5rem; }
 .page-related-list a{font-size: .875rem; height: 1.75rem; line-height: 1.75rem; color: #666;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
