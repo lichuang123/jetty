@@ -33,6 +33,33 @@ public class VideoTableService extends BaseService {
 	@Autowired
 	private VideoTableCountMapper videoTableCountMapper;
 	
+	
+	@Transactional(readOnly = true)
+	public Map<String,Object> selectThreeTypeVideoHost(){
+		
+		Map<String,Object> tv_map = new HashMap<String,Object>();
+		tv_map.put("belongto", "1");
+		tv_map.put("videoType", "1");
+		List<Map<String,Object>> tv = videoTableMapper.selectThreeTypeVideoHost(tv_map);
+		
+		Map<String,Object> mv_map = new HashMap<String,Object>();
+		mv_map.put("belongto", "1");
+		mv_map.put("videoType", "2");
+		List<Map<String,Object>> movie = videoTableMapper.selectThreeTypeVideoHost(mv_map);
+		
+		Map<String,Object> sub_map = new HashMap<String,Object>();
+		sub_map.put("belongto", "1");
+		sub_map.put("videoType", "3");
+		List<Map<String,Object>> subject = videoTableMapper.selectThreeTypeVideoHost(sub_map);
+		
+		Map<String,Object> rmap = new HashMap<String,Object>();
+		rmap.put("tv", tv);
+		rmap.put("movie", movie);
+		rmap.put("subject", subject);
+		
+		return rmap;
+	}
+	
 	//查询播放、喜欢、不喜欢次数
 	public Map<String,Object> selectThreeCount(Integer vtcId){
 		Integer count = videoTableMapper.selectPlayCountById(vtcId);

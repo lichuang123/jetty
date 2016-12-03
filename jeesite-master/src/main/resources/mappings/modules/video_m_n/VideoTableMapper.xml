@@ -32,6 +32,23 @@
     id, video_name, video_type, video_belongto, video_context, video_createTime, video_createUser, 
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
+  
+  <!-- 查询电影、电视剧、专题 -->
+  <select id="selectThreeTypeVideoHost" parameterType="java.util.Map" resultType="java.util.Map" useCache="false">
+  	SELECT
+		id,
+		video_name,
+		video_type,
+		video_photo_url
+	FROM
+		video_table
+	WHERE
+		video_belongto = #{belongto}
+	AND
+		video_type = #{videoType}
+	limit 0,4
+  </select>
+  
   <!-- 查询三种次数 -->
   <select id="selectThreeCount" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
   	SELECT

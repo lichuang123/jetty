@@ -103,4 +103,14 @@ public class VideoTableController extends BaseController {
 		log.debug("===========selectThreeCount============"+map);
 		return map;
 	}
+	
+	@RequestMapping(value="selectThreeTypeVideoHost",method=RequestMethod.GET)
+	public ModelAndView selectThreeTypeVideoHost(){
+		Map<String,Object> map = videoTableService.selectThreeTypeVideoHost();
+		log.debug("==============selectThreeTypeVideoHost==================="+map);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("map", map);
+		mv.setViewName("modules/video_m_n/video_list");
+		return mv;
+	}
 }
