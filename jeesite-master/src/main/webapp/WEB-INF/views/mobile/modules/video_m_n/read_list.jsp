@@ -15,7 +15,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="Jason">
-<link href="css/style.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="${pageContext.request.contextPath}/static/video_m_n/css/style.css" type="text/css" rel="stylesheet" media="screen" />
 </head>
 <style type="text/css">
     .links a{width:23%;text-align: center;}
@@ -30,30 +30,30 @@
     <section class="list-box-con clearfix">
     	<header>小说<a href="">更多&gt;</a></header>
         <ul class="list-box-con-s clearfix">
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
         	<!-- <li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li> -->
         </ul>
     </section>
     <section class="list-box-con clearfix">
     	<header>文学<a href="">更多&gt;</a></header>
         <ul class="list-box-con-s clearfix">
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
         	<!-- <li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li> -->
         </ul>
     </section>
     <section class="list-box-con clearfix">
     	<header>杂文<a href="">更多&gt;</a></header>
         <ul class="list-box-con-s clearfix">
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+        	<li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
         	<!-- <li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li> -->
         </ul>
     </section>
