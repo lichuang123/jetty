@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.thinkgem.jeesite.common.web.BaseController;
 /*@RequestMapping(value = "${adminPath}/video_m_n/noveltable")*/
 @Controller
-@RequestMapping(value = "novelTableController")
+@RequestMapping(value = "${adminPath}/video_m_n/noveltable/")
 public class NovelTableController extends BaseController {
-
+	@RequestMapping("getNovelPage")
+	public String getNovelPage(){
+		return "modules/video_m_n/read_list";
+	}
 }
