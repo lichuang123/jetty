@@ -10,3 +10,4 @@
 <%@ taglib prefix="cms" tagdir="/WEB-INF/tags/cms" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}${fns:getAdminPath()}"/>
 <c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/jquery-1.12.4.min.js"></script>
