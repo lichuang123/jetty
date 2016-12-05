@@ -33,6 +33,31 @@
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
   
+  
+  <select id="showMusicPermission" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		mt.id id,
+		mtc.id mtcId,
+		mt.music_name music_name,
+		mt.music_belongTo music_belongTo,
+		mt.music_context music_context,
+		mt.music_photo_url music_photo_url,
+		mt.music_type music_type,
+		mtc.music_address music_address,
+		mtc.music_down_address music_down_address,
+		mtc.music_hite_count music_hite_count,
+		mtc.music_like_count music_like_count,
+		mtc.music_order music_order,
+		mtc.music_play_count music_play_count
+	FROM
+		music_table mt,
+		music_table_count mtc
+	WHERE
+		mt.id = mtc.music_id
+	AND
+		mt.id = #{id}
+  </select>
+  
   <select id="selectHostMusic" parameterType="java.util.Map" resultType="java.util.Map" useCache="false">
   	SELECT
 		id,

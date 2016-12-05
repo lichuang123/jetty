@@ -56,8 +56,7 @@ public class VideoTableController extends BaseController {
 		mv.addObject("m_list", m_list);
 		mv.setViewName("modules/video_m_n/index");
 		return mv;
-		
-		//return "modules/video_m_n/index";
+
 	}
 	
 	@RequestMapping(value="showVideoPermission",method=RequestMethod.GET)
@@ -66,8 +65,7 @@ public class VideoTableController extends BaseController {
 		List<Map<String,Object>> list = videoTableService.showPermissionVideo(id);
 		log.debug("==================sohwVideoPermission==============="+list);
 		mv.addObject("list", list);
-		if(list.size()>0) mv.addObject("list_0", list.get(0));
-		else mv.addObject("list_0", null);
+		mv.addObject("list_0", list.get(0));
 		if(list.size()>14) mv.addObject("more",14);
 		mv.setViewName("modules/video_m_n/page2");
 		return mv;

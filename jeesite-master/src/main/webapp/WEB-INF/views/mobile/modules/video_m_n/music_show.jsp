@@ -23,34 +23,45 @@
 </style>
 
 <body>
-    <header class="header pr">音频专区<a href="" class="back pa">&lt;返回</a><!-- <a href="" class="search-icon pa">搜索</a> --></header>
+    <header class="header pr">音频专区<a href="../videoTableController/selectHostVideo.do" class="back pa">&lt;返回</a><!-- <a href="" class="search-icon pa">搜索</a> --></header>
     <section class="page-box clearfix">
-        <div class="music_showPhoto"><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" align="" /></div>
-        <section class="page-links clearfix"><a href="">播放</a><a href="">下载</a></section>
+        <div class="music_showPhoto"><img src="${list_0.music_photo_url }" align="" /></div>
+        <audio autoplay="autoplay" id="audio_id" style="width:100%;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;position:relative;top:-4.0rem;z-index:100;" controls="controls" loop="loop" preload="auto" src="${list_0.music_address }">
+		      你的浏览器不支持audio标签
+		</audio>
+        <section class="page-links clearfix" style="margin-top:0rem;"><a id="playId" onclick="playOrStop();">播放</a><a href="">下载</a></section>
         <section class="page-info clearfix">
-            <header class="page-info-hd"><span>小说</span><h1>士兵突击</h1></header>
-            <p class="page-info-s">摘要：该视频讲诉许三多由农民如何一步步成为兵王的过程</p>
-            <section class="page-info-reading"><a href="">1223</a><a href="">1.5万次</a><span>阅读1.5万次</span></section>
+            <header class="page-info-hd">
+            	<span>
+					<c:if test="${list_0.music_type==1 }">广播录音</c:if>
+					<c:if test="${list_0.music_type==2 }">名人课堂</c:if>
+				</span>
+            	<h1>${list_0.music_name }</h1>
+            </header>
+            <p class="page-info-s">摘要：${list_0.music_context }</p>
+            <section class="page-info-reading"><a href="">${list_0.music_like_count }</a><a href="">${list_0.music_hite_count }</a><span>阅读${list_0.music_play_count }</span></section>
         </section>
         <section class="page-related clearfix">
 		<em>剧集</em>
-		<section class="page-related-list-2">
-			<a href="" class="on">1</a>
-			<a href="">2</a>
-			<a href="">3</a>
-			<a href="">4</a>
-			<a href="">5</a>
-			<a href="">2</a>
-			<a href="">3</a>
-			<a href="">4</a>
-			<a href="">5</a>
-			<a href="">2</a>
-			<a href="">3</a>
-			<a href="">4</a>
-			<a href="">5</a>
-			<a href="">更多&gt;&gt;</a>
+		<input type="hidden" id="music_table_id" value="${list_0.id }"/>
+		<section class="page-related-list-2" id="chooseOrderF">
+			<c:choose>
+	    		<c:when test="${not empty list }">
+	    			<c:forEach items="${list }" var="music">
+	    					<c:if test="${music.music_order<=15 }">
+	    						<a id="chooseOrder${music.music_order }" onclick="chooseOrder('${music.music_address}','${music.music_order }','${music.mtcId }')" <c:if test="${music.music_order==1 }"> class="on"</c:if>>${music.music_order }</a>
+	    					</c:if>
+	    					<c:if test="${music.music_order>15 }">
+	    						<a id="chooseOrder${music.music_order }" onclick="chooseOrder('${music.music_address}','${music.music_order }','${music.vtcId }')" style="display: none;">${music.music_order }</a>
+	    					</c:if>
+	    			</c:forEach>
+	    		</c:when>
+	    	</c:choose>
+			<c:if test="${more == 14 }"><a onclick="removeHdclass();" style="width: auto;font-size: .875rem;font-weight: 100;" id="showMore">更多&gt;&gt;</a></c:if>
+
 		</section>
         </section>
     </section>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/music_show.js"></script>
 </html>

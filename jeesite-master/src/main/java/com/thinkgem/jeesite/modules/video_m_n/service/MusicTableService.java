@@ -25,6 +25,11 @@ public class MusicTableService extends BaseService {
 	private MusicTableCountMapper musicTableCountMapper;
 	
 	@Transactional(readOnly = true)
+	public List<Map<String,Object>> showMusicPermission(Integer id){
+		return musicTableMapper.showMusicPermission(id);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<Map<String,Object>> selectHostMusic(Map<String,Object> map){
 		return musicTableMapper.selectHostMusic(map);
 	}
@@ -52,7 +57,7 @@ public class MusicTableService extends BaseService {
 			
 			MusicTableCount mtc = new MusicTableCount();
 			mtc.setMusicId(mt.getId());
-			mtc.setMusicAddress("/musicUrl/"+i+".mp4");
+			mtc.setMusicAddress("/musicUrl/"+i+".mp3");
 			mtc.setMusicDownAddress("G:/KuGoump3/"+i+".mp3");
 			mtc.setMusicHiteCount(0);
 			mtc.setMusicLikeCount(0);

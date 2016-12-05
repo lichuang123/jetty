@@ -23,8 +23,6 @@
     <section class="page-box clearfix">
 	        <video id="myVideo" controls="controls" poster="${list_0.video_photo_url }" width="100%">
 	            <source src="${list_0.video_address }" type="video/mp4" id="sourceId"/>
-	            <!-- <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.webm" type="video/webM" />
-	            <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.ogv" type="video/ogg" /> -->
 	            <p>Your browser does not support the video tag.</p>
 	        </video>
 	        <input type="hidden" id="currentTime"/>
