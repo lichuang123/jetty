@@ -16,8 +16,6 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="Jason">
-    
-    <link href="${pageContext.request.contextPath}/static/video_m_n/css/style.css" type="text/css" rel="stylesheet" media="screen" />
 </head>
 
 <body>
@@ -88,7 +86,7 @@
                 </section>
                 <section class="links clearfix"><a href="selectThreeTypeVideoHost.do">影视专区</a><a href="">音频专区</a><a href="">阅读专区</a></section>
                 <section class="list-box-con clearfix">
-                    <header>热点视频<a href="">更多&gt;</a></header>
+                    <header>热点视频<a href="selectHostVideoForPage.do?type=">更多&gt;</a></header>
                     <ul class="list-box-con-s clearfix">
                         <c:choose>
                         	<c:when test="${not empty v_list }">
@@ -105,10 +103,22 @@
                 <section class="list-box-con clearfix">
                     <header>热门音频<a href="">更多&gt;</a></header>
                     <ul class="list-box-con-s clearfix">
+                    	<c:choose>
+                        	<c:when test="${not empty m_list }">
+                        		<c:forEach items="${m_list }" var="music">
+                        			<li><a onclick="showMusicPermission(${music.id});"><img src="${music.music_photo_url }" /><em>${music.music_name }</em>
+                        			<span>
+	                        			<c:if test="${music.music_belongTo==1 }">广播录音</c:if>
+	                        			<c:if test="${music.music_belongTo==2 }">名人课堂</c:if>
+	                        			<%-- <c:if test="${music.video_type==3 }">专题片</c:if> --%>
+	                        		</span></a></li>
+                        		</c:forEach>
+                        	</c:when>
+                        </c:choose>
+                       <%--  <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
                         <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
                         <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
+                        <li><a href=""><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li> --%>
                         
                     </ul>
                 </section>

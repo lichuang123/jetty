@@ -20,9 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.modules.video_m_n.commenMethod.fileUpload;
+import com.thinkgem.jeesite.modules.video_m_n.service.MusicTableService;
 import com.thinkgem.jeesite.modules.video_m_n.service.VideoTableService;
 
-/*@RequestMapping(value = "${adminPath}/video_m_n/videotable")*/
 @Controller
 @RequestMapping(value = "${adminPath}/video_m_n/videoTableController/")
 public class VideoTableController extends BaseController {
@@ -32,16 +32,28 @@ public class VideoTableController extends BaseController {
 	@Autowired
 	private VideoTableService videoTableService;
 	
+	@Autowired
+	private MusicTableService musicTableService;
+	
 	@RequestMapping(value="selectHostVideo",method=RequestMethod.GET)
 	public ModelAndView selectHostVideo(){
 		ModelAndView mv = new ModelAndView();
+		
 		Map<String,Object> v_map = new HashMap<String,Object>();
 		v_map.put("belongto", "1");
 		v_map.put("start", 0);
 		v_map.put("pageSize", 4);
 		List<Map<String,Object>> v_list = videoTableService.selectHostVideo(v_map);
-		log.debug("=========selectHostVideo============="+v_list);
+		
+		Map<String,Object> m_map = new HashMap<String,Object>();
+		m_map.put("belongto", "7");
+		m_map.put("start", 0);
+		m_map.put("pageSize", 4);
+		List<Map<String,Object>> m_list = musicTableService.selectHostMusic(m_map);
+		
+		log.debug("=========selectHostVideo============="+v_list+"========"+m_list);
 		mv.addObject("v_list", v_list);
+		mv.addObject("m_list", m_list);
 		mv.setViewName("modules/video_m_n/index");
 		return mv;
 		
@@ -54,11 +66,9 @@ public class VideoTableController extends BaseController {
 		List<Map<String,Object>> list = videoTableService.showPermissionVideo(id);
 		log.debug("==================sohwVideoPermission==============="+list);
 		mv.addObject("list", list);
-		/*Map<String,Object> rmap = list.get(0);
-		String vtcId = (String) rmap.get("vtcId");
-		videoTableService.addVideoPlayCount(Integer.parseInt(vtcId));*/
 		if(list.size()>0) mv.addObject("list_0", list.get(0));
 		else mv.addObject("list_0", null);
+		if(list.size()>14) mv.addObject("more",14);
 		mv.setViewName("modules/video_m_n/page2");
 		return mv;
 	}
@@ -113,4 +123,67 @@ public class VideoTableController extends BaseController {
 		mv.setViewName("modules/video_m_n/video_list");
 		return mv;
 	}
+	
+	@RequestMapping(value="gotoSearchPage",method=RequestMethod.GET)
+	public ModelAndView gotoSearchPage(){
+		ModelAndView mv = new ModelAndView();
+		Map<String,Object> v_map = new HashMap<String,Object>();
+		v_map.put("belongto", "1");
+		v_map.put("start", 0);
+		v_map.put("pageSize", 10);
+		List<Map<String,Object>> v_list = videoTableService.selectHostVideo(v_map);
+		log.debug("=========gotoSearchPage============"+v_list);
+		mv.addObject("v_list", v_list);
+		mv.setViewName("modules/video_m_n/video_search");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="searchVideo",method=RequestMethod.POST)
+	public List<Map<String,Object>> searchVideo(@RequestParam("searchName")String searchName){
+		List<Map<String,Object>> list = videoTableService.searchVideo(searchName);
+		log.debug("================searchVideo=============="+list);
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="showMore",method=RequestMethod.POST)
+	public List<Map<String,Object>> showMore(@RequestParam("id")Integer id){
+		List<Map<String,Object>> list = videoTableService.showPermissionVideo(id);
+		log.debug("=====showMore========"+list);
+		return list;
+	}
+	
+	@RequestMapping(value="selectHostVideoForPage",method=RequestMethod.GET)
+	public ModelAndView selectHostVideoForPage(HttpServletRequest request){
+		/*Map<String,Object> v_map = new HashMap<String,Object>();
+		v_map.put("belongto", "1");
+		v_map.put("start", 0);
+		v_map.put("pageSize", 10);
+		List<Map<String,Object>> list = videoTableService.selectHostVideoForPage(v_map);
+		log.debug("====================selectHostVideoForPage=============="+list);*/
+		String type = request.getParameter("type");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("type", type);
+		mv.setViewName("modules/video_m_n/video_more_list");
+		return mv;
+	}
+	
+	//加载所有的
+	@ResponseBody
+	@RequestMapping(value="selectDataForpage",method=RequestMethod.POST)
+	public List<Map<String,Object>> selectDataForpage(@RequestParam("currentPage")Integer currentPage,HttpServletRequest request){
+		String type = request.getParameter("type");
+		Map<String,Object> map = new HashMap<String,Object>();
+		int pageSize = 10;
+		int start = currentPage*10 - pageSize;
+		map.put("start", start);
+		map.put("pageSize", pageSize);
+		if(null != type && !"".equals(type))map.put("videoType", type);
+		List<Map<String,Object>> list = videoTableService.selectDataForpage(map);
+		log.debug("===============selectDataForpage================="+list);
+		return list;
+	}
+	
+	
 }

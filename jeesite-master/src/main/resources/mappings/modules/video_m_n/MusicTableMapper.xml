@@ -32,6 +32,22 @@
     id, music_name, music_type, music_belongTo, music_context, music_createTime, music_createUser, 
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
+  
+  <select id="selectHostMusic" parameterType="java.util.Map" resultType="java.util.Map" useCache="false">
+  	SELECT
+		id,
+		music_belongTo,
+		music_context,
+		music_name,
+		music_photo_url,
+		music_type
+	FROM
+		music_table
+	WHERE
+		music_type = #{belongto}
+	LIMIT #{start},#{pageSize}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -101,6 +117,9 @@
       <if test="musicCreateuser != null" >
         music_createUser,
       </if>
+      <if test="musicPhotoUrl != null">
+      	music_photo_url,
+      </if>
       <if test="attra != null" >
         ATTRA,
       </if>
@@ -141,6 +160,9 @@
       </if>
       <if test="musicCreateuser != null" >
         #{musicCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="musicPhotoUrl != null">
+      	#{musicPhotoUrl,jdbcType=VARCHAR},
       </if>
       <if test="attra != null" >
         #{attra,jdbcType=VARCHAR},

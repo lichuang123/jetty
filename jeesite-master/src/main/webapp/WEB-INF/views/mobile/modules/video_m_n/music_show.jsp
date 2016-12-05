@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,16 +16,16 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="Jason">
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen" />
+    
 </head>
 <style type="text/css">
     .music_showPhoto{text-align: center;}
 </style>
 
 <body>
-    <header class="header pr">音频专区<a href="" class="back pa">&lt;返回</a><a href="" class="search-icon pa">搜索</a></header>
+    <header class="header pr">音频专区<a href="" class="back pa">&lt;返回</a><!-- <a href="" class="search-icon pa">搜索</a> --></header>
     <section class="page-box clearfix">
-        <div class="music_showPhoto"><img src="pic/pic2.png" align="" /></div>
+        <div class="music_showPhoto"><img src="${pageContext.request.contextPath}/static/video_m_n/pic/pic2.png" align="" /></div>
         <section class="page-links clearfix"><a href="">播放</a><a href="">下载</a></section>
         <section class="page-info clearfix">
             <header class="page-info-hd"><span>小说</span><h1>士兵突击</h1></header>

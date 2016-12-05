@@ -69,7 +69,7 @@ a{text-decoration:none}
 .list-box-con-s img{ width:100%}
 .list-box-con-s a,.list-box-con-s em,.list-box-con-s span{ display:block; color:#666}
 .list-box-con-s em,.list-box-con-s span{ font-size:.75rem; width:90%; padding:0 5%; line-height:1.25rem}
-.list-box-con-s em{ font-size:1rem; margin-top:.25rem}
+.list-box-con-s em{ font-size:1rem; margin-top:.25rem;width: 11rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 
 
 /*page*/
@@ -161,6 +161,8 @@ a{text-decoration:none}
 .fenye a:hover{ background:#f3f3f3;}
 /* .tab-con-2s li:last-child a:before,.tab-con-2s li:last-child a:after{content: ""; display: block; position: absolute; left: 0;top: 50%; height: 1px; width: 100%;background:linear-gradient(to right,#5b2238, #5b2238 40%,rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%,#5b2238 60%,#5b2238); margin-top:-3px;} */
 
+.more_a{width: auto;font-size: .875rem;font-weight: 100;}
+.hdclass{display: none;}
 
 @media screen and  (max-width:1023px){html{font-size:26px;}}
 @media screen and  (max-width:767px){html{font-size:22px;} }

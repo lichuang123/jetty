@@ -33,6 +33,18 @@
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
   
+  <!-- 模糊查询 -->
+  <select id="searchVideo" parameterType="java.lang.String" resultType="java.util.Map" useCache="false">
+  	SELECT
+		id,
+		video_name
+	FROM
+		video_table
+	WHERE
+		video_name LIKE 
+	concat('%',concat(#{searchName},'%'))
+  </select>
+  
   <!-- 查询电影、电视剧、专题 -->
   <select id="selectThreeTypeVideoHost" parameterType="java.util.Map" resultType="java.util.Map" useCache="false">
   	SELECT
@@ -159,7 +171,13 @@
 	FROM
 		video_table
 	WHERE
-		video_belongto = #{belongto}
+		1=1
+	<if test="belongto != null">
+		and video_belongto = #{belongto}
+	</if>
+	<if test="videoType != null">
+		and video_type = #{videoType}
+	</if>
 	limit #{start},#{pageSize}
   </select>
   

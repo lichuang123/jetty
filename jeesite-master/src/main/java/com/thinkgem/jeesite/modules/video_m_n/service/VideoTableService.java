@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thinkgem.jeesite.common.service.BaseService;
-import com.thinkgem.jeesite.modules.video_m_n.dao.MusicTableCountMapper;
-import com.thinkgem.jeesite.modules.video_m_n.dao.MusicTableMapper;
 import com.thinkgem.jeesite.modules.video_m_n.dao.VideoTableCountMapper;
 import com.thinkgem.jeesite.modules.video_m_n.dao.VideoTableMapper;
 import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTable;
@@ -20,12 +18,6 @@ import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTableCount;
 @Service
 @Transactional(readOnly = false)
 public class VideoTableService extends BaseService {
-
-	@Autowired
-	private MusicTableCountMapper musicTableCountMapper;
-	
-	@Autowired
-	private MusicTableMapper musicTableMapper;
 	
 	@Autowired
 	private VideoTableMapper videoTableMapper;
@@ -33,6 +25,15 @@ public class VideoTableService extends BaseService {
 	@Autowired
 	private VideoTableCountMapper videoTableCountMapper;
 	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> selectDataForpage(Map<String,Object> map){
+		return videoTableMapper.selectHostVideo(map);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> searchVideo(String searchName){
+		return videoTableMapper.searchVideo(searchName);
+	}
 	
 	@Transactional(readOnly = true)
 	public Map<String,Object> selectThreeTypeVideoHost(){
@@ -116,6 +117,11 @@ public class VideoTableService extends BaseService {
 	
 	@Transactional(readOnly = true)
 	public List<Map<String,Object>> selectHostVideo(Map<String,Object> map){
+		return videoTableMapper.selectHostVideo(map);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Map<String,Object>> selectHostVideoForPage(Map<String,Object> map){
 		return videoTableMapper.selectHostVideo(map);
 	}
 	

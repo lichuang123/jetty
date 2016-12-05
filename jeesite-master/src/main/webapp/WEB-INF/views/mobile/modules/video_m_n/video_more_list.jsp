@@ -16,36 +16,46 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="Jason">
-<link href="${pageContext.request.contextPath}/static/video_m_n/css/style.css" type="text/css" rel="stylesheet" media="screen" />
+<style type="text/css">
+	#scroller li{width:50%; padding:10px; box-sizing:border-box; float:left; border-top: aliceblue; border-bottom: aliceblue; line-height: inherit;height: auto;};
+</style>
 </head>
 
-<body>
-<header class="header pr">听广播<a href="" class="back pa">&lt;返回</a></header>
-<section class="list-box clearfix">
-    <section class="list-box-con clearfix" style="border-top:0;">
-        <ul class="list-box-con-s clearfix" style="border-top:0;">
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-            <li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        	<li><a href=""><img src="pic/pic2.png" alt="" /><em>士兵突击</em><span>名人讲坛</span></a></li>
-        </ul>
-    </section>
-    <section class="fenye">
-    	<a>1</a>
-        <a>2</a>
-        <a>3</a>
-        <a>4</a>
-        <a>5</a>
-        <a>6</a>
-        <a>7</a>
-        <a>8</a>
-    </section>
-</section>
+<body onload="loaded()">
+	<input type="hidden" id="video_type_id" value="${type }"/>
+	<section id="wrapper">
+		<section id="scroller">
+			<section id="pullDown">
+	  			<span class="pullDownIcon"></span><span class="pullDownLabel">这是顶部...</span>
+	 		</section>
+	 		<header class="header pr">看视频<a href="selectThreeTypeVideoHost.do" class="back pa">&lt;返回</a></header>
+			<section class="list-box clearfix">
+	 		<section class="scroller-content" >
+	 			<section class="list-box-con clearfix" style="border-top:0;">
+			        <ul class="list-box-con-s clearfix" style="border-top:0;" id="loadingDataForpage">
+			        	<%-- <c:choose>
+			        		<c:when test="${not empty list }">
+			        			<c:forEach items="${list }" var="video">
+			        				<li><a onclick="showVideoPermission(${video.id});"><img src="${video.video_photo_url }" /><em>${video.video_name }</em>
+			        				<span>
+			        					<c:if test="${video.video_type==1 }">电视剧</c:if>
+			                    		<c:if test="${video.video_type==2 }">电影</c:if>
+			                    		<c:if test="${video.video_type==3 }">专题片</c:if>
+			        				</span></a></li>
+			        			</c:forEach>
+			        		</c:when>
+			        	</c:choose> --%>
+			        </ul>
+			    </section>
+	 		</section>
+	 		</section>
+	 		<section id="pullUp">
+				<span class="pullUpIcon"></span><span class="pullUpLabel">上拉刷新...</span>
+			</section>
+		</section>
+	</section>
+
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/index.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/video_more_list.js"></script>
 </html>

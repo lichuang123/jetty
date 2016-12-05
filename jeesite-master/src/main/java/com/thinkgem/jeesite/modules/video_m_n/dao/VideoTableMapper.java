@@ -9,6 +9,8 @@ import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTable;
 @MyBatisDao
 public interface VideoTableMapper {
 	
+	List<Map<String,Object>> searchVideo(String searchName);
+	
 	List<Map<String,Object>> selectThreeTypeVideoHost(Map<String,Object> map);
 	
 	Map<String,Object> selectThreeCount(Integer vtcId);
