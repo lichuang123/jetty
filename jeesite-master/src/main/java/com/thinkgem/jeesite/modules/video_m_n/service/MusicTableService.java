@@ -24,6 +24,39 @@ public class MusicTableService extends BaseService {
 	@Autowired
 	private MusicTableCountMapper musicTableCountMapper;
 	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> searchMusic(String searchName){
+		return musicTableMapper.searchMusic(searchName);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> selectMusicBelongTo(){
+		return musicTableMapper.selectMusicBelongTo();
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> selectDataForPage(Map<String,Object> map){
+		return musicTableMapper.selectHostMusic(map);
+	}
+	
+	@Transactional(readOnly=true)
+	public Map<String,Object> musicDownload(Integer mtcId){
+		return musicTableMapper.musicDownload(mtcId);
+	}
+	
+	public Integer selectLikeOrHiteCount(Map<String,Object> map){
+		Integer count = musicTableMapper.selectLikeOrHiteCount(map);
+		int count2 = count+1;
+		map.put("count", count2);
+		musicTableMapper.updateLikeOrHiteCount(map);
+		return count2;
+	}
+	
+	@Transactional(readOnly=true)
+	public Map<String,Object> selectPlayLikeHiteCount(Integer mtcId){
+		return musicTableMapper.selectPlayLikeHiteCount(mtcId);
+	}
+	
 	@Transactional(readOnly = true)
 	public List<Map<String,Object>> showMusicPermission(Integer id){
 		return musicTableMapper.showMusicPermission(id);

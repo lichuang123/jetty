@@ -26,7 +26,7 @@
 	            <p>Your browser does not support the video tag.</p>
 	        </video>
 	        <input type="hidden" id="currentTime"/>
-	        <section class="page-links clearfix"><a onclick="play('${list_0.video_address }');" id="playOrpused">播放</a><a onclick="downLoad('${list_0.vtcId}')">下载</a></section>
+	        <section class="page-links clearfix"><a onclick="play('${list_0.video_address }');" id="playOrpused">播放</a><a onclick="downLoad();">下载</a></section>
 	        <section class="page-info clearfix">
 	            <header class="page-info-hd">
 	            	<span>

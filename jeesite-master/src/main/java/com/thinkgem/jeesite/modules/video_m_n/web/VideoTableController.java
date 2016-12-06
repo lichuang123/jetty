@@ -72,12 +72,12 @@ public class VideoTableController extends BaseController {
 	}
 	
 	@RequestMapping(value="fileDownload",method=RequestMethod.GET)
-	public void fileDownload(@RequestParam("vtcId")Integer id,HttpServletResponse response) throws IOException{
+	public void fileDownload(@RequestParam("vtcId")Integer id,HttpServletResponse response,HttpServletRequest request) throws IOException{
 		Map<String,Object> map = videoTableService.selectDownAddressById(id);
 		String video_name = (String) map.get("video_name");
 		String video_down_address = (String) map.get("video_down_address");
 		log.debug("=======进入video的下载方法：fileDownload==================");
-		fileUpload.fileDownload(video_down_address,response,video_name);
+		fileUpload.fileDownload(video_down_address,response,video_name,request);
 	}
 	
 	@ResponseBody
@@ -154,12 +154,7 @@ public class VideoTableController extends BaseController {
 	
 	@RequestMapping(value="selectHostVideoForPage",method=RequestMethod.GET)
 	public ModelAndView selectHostVideoForPage(HttpServletRequest request){
-		/*Map<String,Object> v_map = new HashMap<String,Object>();
-		v_map.put("belongto", "1");
-		v_map.put("start", 0);
-		v_map.put("pageSize", 10);
-		List<Map<String,Object>> list = videoTableService.selectHostVideoForPage(v_map);
-		log.debug("====================selectHostVideoForPage=============="+list);*/
+
 		String type = request.getParameter("type");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("type", type);

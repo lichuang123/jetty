@@ -21,7 +21,8 @@
 <body>
 <section class="search-box">
 	<section class="search-con pr">
-    	 <input type="text" id="searchName" placeholder="请输入关键词搜索" ／><span class="pa" onclick="searchVideo();">确定</span>
+		<input type="hidden" id="searchOrback" value="1"/>
+    	 <input type="text" id="searchName" placeholder="请输入关键词搜索" ／><span class="pa" id="confirmId" onclick="searchVideo();">取消</span>
     </section>
     <section class="search-list">
     	<header>热门搜索</header>

@@ -33,6 +33,80 @@
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
   
+  <select id="searchMusic" parameterType="java.lang.String" resultType="java.util.Map" useCache="false">
+  	select 
+  		id,
+  		music_name
+  	from
+  		music_table
+  	where
+  		music_name
+  	like concat('%',concat(#{searchName},'%'))
+  </select>
+  
+  <select id="selectMusicBelongTo" resultType="java.util.Map" useCache="false">
+  	SELECT DISTINCT
+		music_belongTo
+	FROM
+		music_table
+  </select>
+  
+  <select id="musicDownload" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		mt.music_name music_name,
+		mtc.music_down_address music_down_address
+	FROM
+		music_table mt,
+		music_table_count mtc
+	WHERE
+		mt.id = mtc.music_id
+	AND mtc.id = #{mtcId}
+  </select>
+  
+  <update id="updateLikeOrHiteCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE 
+  		music_table_count
+  	SET 
+  		<if test="like != null">
+			music_like_count=#{count}
+		</if>
+		<if test="hite != null">
+			music_hite_count=#{count}
+		</if>
+		<if test="play != null">
+			music_play_count=#{count}
+		</if>
+  	WHERE
+  		id = #{mtcId}
+  </update>
+  
+  <select id="selectLikeOrHiteCount" parameterType="java.util.Map" resultType="java.lang.Integer" useCache="false">
+ 	SELECT
+		<if test="like != null">
+			music_like_count
+		</if>
+		<if test="hite != null">
+			music_hite_count
+		</if>
+		<if test="play != null">
+			music_play_count
+		</if>
+	FROM
+		music_table_count
+	WHERE
+		id = #{mtcId}
+  </select>
+  
+  <select id="selectPlayLikeHiteCount" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		music_play_count,
+		music_like_count,
+		music_hite_count
+	FROM
+		music_table_count
+	WHERE
+		id = #{mtcId}
+  </select>
   
   <select id="showMusicPermission" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
   	SELECT
@@ -69,7 +143,10 @@
 	FROM
 		music_table
 	WHERE
-		music_type = #{belongto}
+		1=1
+	<if test="belongto != null">
+		and music_belongTo = #{belongto}
+	</if>
 	LIMIT #{start},#{pageSize}
   </select>
   

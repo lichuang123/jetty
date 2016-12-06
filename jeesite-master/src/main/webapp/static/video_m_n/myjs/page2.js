@@ -1,3 +1,7 @@
+	$(function(){
+		var vtcId = $("#video_like_hite_vtcId").val();
+		videoPlayChange(vtcId);
+	})
 	function play(){
 		var status = document.getElementById('myVideo');
 		if($("#myVideo")[0].currentTime == 0){
@@ -19,7 +23,7 @@
 			$("#playOrpused")[0].innerHTML = "播放";
 		}
 	}
-	function chooseOrder(url,id,vtcId){
+	function chooseOrder(url,order,vtcId){
 		$("#video_like_hite_vtcId").val(vtcId);
 		$("#sourceId")[0].src = url;
 		$("#myVideo")[0].src = url;
@@ -28,7 +32,7 @@
 		for(var i = 1 ;i<aa+1;i++){
 			$("#chooseOrder"+i).removeClass("on");
 		}
-		$("#chooseOrder"+id).addClass("on");
+		$("#chooseOrder"+order).addClass("on");
 		$("#playOrpused")[0].innerHTML = "";
 		$("#playOrpused")[0].innerHTML = "暂停";
 		selectThreeCount(vtcId);
@@ -53,7 +57,8 @@
 		})
 	}
 	
-	function downLoad(vtcId){
+	function downLoad(){
+		var vtcId = $("#video_like_hite_vtcId").val();
 		window.location.href = "fileDownload.do?vtcId="+vtcId;
 	}
 	

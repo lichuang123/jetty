@@ -9,6 +9,17 @@ import com.thinkgem.jeesite.modules.video_m_n.entity.MusicTable;
 @MyBatisDao
 public interface MusicTableMapper {
 	
+	List<Map<String,Object>> searchMusic(String searchName);
+	
+	List<Map<String,Object>> selectMusicBelongTo();
+	
+	Map<String,Object> musicDownload(Integer mtcId);
+	
+	void updateLikeOrHiteCount(Map<String,Object> map);
+	Integer selectLikeOrHiteCount(Map<String,Object> map);
+	
+	Map<String,Object> selectPlayLikeHiteCount(Integer mtcId);
+	
 	List<Map<String,Object>> showMusicPermission(Integer id);
 	
 	List<Map<String,Object>> selectHostMusic(Map<String,Object> map);

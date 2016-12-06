@@ -21,11 +21,11 @@
 		});
 		
 		//tab选项查询
-		$(".header ul li").click(function(){
+		/*$(".header ul li").click(function(){
 			var index=$(this).index();
 			$(".header ul li").removeClass("tab-color");
 			$(this).addClass("tab-color");
-		});
+		});*/
 
 	});
 	
@@ -33,33 +33,28 @@
 		//alert("currentPage:"+currentPage);
 		var type = $("#video_type_id").val();
 		$.ajax({
-			url:"selectDataForpage.do",
+			url:"selectDataForPage.do",
 			data:{currentPage:currentPage,
 				type:type},
 			dataType:"json",
 			type:"post",
 			success:function(data){
-				/*<li><a onclick="showVideoPermission(${video.id});"><img src="${video.video_photo_url }" /><em>${video.video_name }</em>
-				<span>
-					<c:if test="${video.video_type==1 }">电视剧</c:if>
-            		<c:if test="${video.video_type==2 }">电影</c:if>
-            		<c:if test="${video.video_type==3 }">专题片</c:if>
-				</span></a></li>*/
+				
 				var text = "";
 				if(data.length>0){
 					//text += "<section class='list-box-con clearfix' style='border-top:0;'><ul class='list-box-con-s clearfix' style='border-top:0;'>";
 					$.each(data,function(i,obj){
-						text += "<li><a onclick=\"showVideoPermission('"+obj.id+"');\"><img src="+obj.video_photo_url+"><em>"+obj.video_name+"</em><span>";
-						if(obj.video_type==1)text += "电视剧";
-						if(obj.video_type==2)text += "电影";
-						if(obj.video_type==3)text += "专题片";
+						text += "<li><a onclick=\"showMusicPermission('"+obj.id+"');\"><img src="+obj.music_photo_url+"><em>"+obj.music_name+"</em><span>";
+						if(obj.music_type==1)text += "广播录音";
+						if(obj.music_type==2)text += "名人课堂";
+						//if(obj.music_type==3)text += "专题片";
 						text += "<span></a></li>";
 					});
 					//text += "</ul></section>";
 					$("#loadingDataForpage").append(text);
 				}else{
 					noMoreData = "没有更多数据了...";
-					currentPage--;
+					currentPage --;
 					//pullUpL.html('没有更多数据了...');
 				}
 			},
@@ -74,19 +69,7 @@
  * myScroll.refresh(); 数据加载完成后，调用界面更新方法
  */
 function pullDownAction () {
-	//alert("11111");
-    /*setTimeout(function () {   
-        var el, li, i;
-        el = document.getElementById('thelist');
- 
-        for (i=0; i<3; i++) {
-            li = document.createElement('li');
-            li.innerText = 'Generated row ' + (++generatedCount);
-            el.insertBefore(li, el.childNodes[0]);
-        }
-         
-        myScroll.refresh();     //数据加载完成后，调用界面更新方法 
-    }, 1000); */ 
+	
 }
  
 /**
@@ -138,18 +121,7 @@ function pullUpAction () {
      });  
      //滚动时  
      myScroll.on('scroll', function(){  
-         //if(loadingStep == 0 && !pullDownEl.attr('class').match('flip|loading') && !pullUpEl.attr('class').match('flip|loading')){  
-        /* if (this.y > 5) {  
-             //下拉刷新效果  
-             pullDownEl.attr('class',pullUpEl['class'])  
-             pullDownEl.show();  
-             myScroll.refresh();  
-             pullDownEl.addClass('flip');  
-             pullDownL.html('准备刷新...');  
-             loadingStep = 1;  
-         }else*/ 
-        	// if (this.y < (this.maxScrollY - 5)) {  
-             //上拉刷新效果  
+         
              pullUpEl.attr('class',pullUpEl['class'])  
              pullUpEl.show();  
              myScroll.refresh();  
@@ -157,25 +129,13 @@ function pullUpAction () {
              if(noMoreData != '') pullUpL.html(noMoreData);
              else pullUpL.html('loading...');
              loadingStep = 1;  
-         //}  
-        // }  
+         
      });  
      //滚动完毕  
      myScroll.on('scrollEnd',function(){  
-         //if(loadingStep == 1){  
-         //if (pullUpEl.attr('class').match('flip|loading')) {  
-            /* pullUpEl.removeClass('flip').addClass('loading');  
-             pullUpL.html('Loading...');  
-             loadingStep = 2;*/  
+         
              pullUpAction();  
-        // }
-                 /*else if(pullDownEl.attr('class').match('flip|loading')){  
-             pullDownEl.removeClass('flip').addClass('loading');  
-             pullDownL.html('Loading...');  
-             loadingStep = 2;  
-             pullDownAction();  
-         }*/  
-         //}  
+       
      });  
    }  
  
