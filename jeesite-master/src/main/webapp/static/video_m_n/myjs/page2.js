@@ -1,3 +1,7 @@
+	$(function(){
+		var vtcId = $("#video_like_hite_vtcId").val();
+		videoPlayChange(vtcId);
+	})
 	function play(){
 		var status = document.getElementById('myVideo');
 		if($("#myVideo")[0].currentTime == 0){
@@ -19,7 +23,7 @@
 			$("#playOrpused")[0].innerHTML = "播放";
 		}
 	}
-	function chooseOrder(url,id,vtcId){
+	function chooseOrder(url,order,vtcId){
 		$("#video_like_hite_vtcId").val(vtcId);
 		$("#sourceId")[0].src = url;
 		$("#myVideo")[0].src = url;
@@ -28,7 +32,7 @@
 		for(var i = 1 ;i<aa+1;i++){
 			$("#chooseOrder"+i).removeClass("on");
 		}
-		$("#chooseOrder"+id).addClass("on");
+		$("#chooseOrder"+order).addClass("on");
 		$("#playOrpused")[0].innerHTML = "";
 		$("#playOrpused")[0].innerHTML = "暂停";
 		selectThreeCount(vtcId);
@@ -53,7 +57,8 @@
 		})
 	}
 	
-	function downLoad(vtcId){
+	function downLoad(){
+		var vtcId = $("#video_like_hite_vtcId").val();
 		window.location.href = "fileDownload.do?vtcId="+vtcId;
 	}
 	
@@ -105,6 +110,35 @@
 			},
 			error:function(e){
 				alert("select play like hite error："+e.status);
+			}
+		})
+	}
+	
+	function removeHdclass(){
+		var aa = $("#chooseOrderF")[0].childElementCount;
+		for(var i = 1 ;i<aa;i++){
+			$("#chooseOrder"+i)[0].style.display = "inline-block";
+		}
+		$("#showMore")[0].style.display = "none";
+	}
+	
+	function showMore(){
+		$.ajax({
+			url:"showMore.do",
+			data:{id:$("#video_id").val()},
+			dataType:"json",
+			type:"post",
+			success:function(data){
+				var text = "";
+				$.each(data,function(i,obj){
+					/*<a id="chooseOrder${video.video_order }" onclick="chooseOrder('${video.video_address}','${video.video_order }','${video.vtcId }')" <c:if test="${video.video_order==1 }"> class="on"</c:if>>${video.video_order }</a>*/
+					text += "<a id='chooseOrder'"+obj.video_order+" onclick=\"chooseOrder('"+obj.video_address+"','"+obj.video_order+"','"+obj.vtcId+"');\">"+obj.video_order+"</a>";
+				});
+				$("#showMore").addClass("hdclass");
+				$("#chooseOrderF")[0].innerHTML = text;
+			},
+			error:function(e){
+				alert("show more list error:"+e.status);
 			}
 		})
 	}

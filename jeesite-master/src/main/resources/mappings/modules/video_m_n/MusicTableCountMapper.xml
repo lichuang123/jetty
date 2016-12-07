@@ -101,6 +101,9 @@
       <if test="musicOrder != null" >
         music_order,
       </if>
+      <if test="musicDownAddress != null">
+      	music_down_address,
+      </if>
       <if test="attra != null" >
         ATTRA,
       </if>
@@ -141,6 +144,9 @@
       </if>
       <if test="musicOrder != null" >
         #{musicOrder,jdbcType=INTEGER},
+      </if>
+      <if test="musicDownAddress != null">
+      	#{musicDownAddress,jdbcType=VARCHAR},
       </if>
       <if test="attra != null" >
         #{attra,jdbcType=VARCHAR},

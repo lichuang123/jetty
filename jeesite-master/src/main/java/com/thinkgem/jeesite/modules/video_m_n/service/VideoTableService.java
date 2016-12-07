@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.thinkgem.jeesite.common.service.BaseService;
-import com.thinkgem.jeesite.modules.video_m_n.dao.MusicTableCountMapper;
-import com.thinkgem.jeesite.modules.video_m_n.dao.MusicTableMapper;
 import com.thinkgem.jeesite.modules.video_m_n.dao.VideoTableCountMapper;
 import com.thinkgem.jeesite.modules.video_m_n.dao.VideoTableMapper;
 import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTable;
@@ -20,18 +18,48 @@ import com.thinkgem.jeesite.modules.video_m_n.entity.VideoTableCount;
 @Service
 @Transactional(readOnly = false)
 public class VideoTableService extends BaseService {
-
-	@Autowired
-	private MusicTableCountMapper musicTableCountMapper;
-	
-	@Autowired
-	private MusicTableMapper musicTableMapper;
 	
 	@Autowired
 	private VideoTableMapper videoTableMapper;
 	
 	@Autowired
 	private VideoTableCountMapper videoTableCountMapper;
+	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> selectDataForpage(Map<String,Object> map){
+		return videoTableMapper.selectHostVideo(map);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> searchVideo(String searchName){
+		return videoTableMapper.searchVideo(searchName);
+	}
+	
+	@Transactional(readOnly = true)
+	public Map<String,Object> selectThreeTypeVideoHost(){
+		
+		Map<String,Object> tv_map = new HashMap<String,Object>();
+		tv_map.put("belongto", "1");
+		tv_map.put("videoType", "1");
+		List<Map<String,Object>> tv = videoTableMapper.selectThreeTypeVideoHost(tv_map);
+		
+		Map<String,Object> mv_map = new HashMap<String,Object>();
+		mv_map.put("belongto", "1");
+		mv_map.put("videoType", "2");
+		List<Map<String,Object>> movie = videoTableMapper.selectThreeTypeVideoHost(mv_map);
+		
+		Map<String,Object> sub_map = new HashMap<String,Object>();
+		sub_map.put("belongto", "1");
+		sub_map.put("videoType", "3");
+		List<Map<String,Object>> subject = videoTableMapper.selectThreeTypeVideoHost(sub_map);
+		
+		Map<String,Object> rmap = new HashMap<String,Object>();
+		rmap.put("tv", tv);
+		rmap.put("movie", movie);
+		rmap.put("subject", subject);
+		
+		return rmap;
+	}
 	
 	//查询播放、喜欢、不喜欢次数
 	public Map<String,Object> selectThreeCount(Integer vtcId){
@@ -89,6 +117,11 @@ public class VideoTableService extends BaseService {
 	
 	@Transactional(readOnly = true)
 	public List<Map<String,Object>> selectHostVideo(Map<String,Object> map){
+		return videoTableMapper.selectHostVideo(map);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Map<String,Object>> selectHostVideoForPage(Map<String,Object> map){
 		return videoTableMapper.selectHostVideo(map);
 	}
 	

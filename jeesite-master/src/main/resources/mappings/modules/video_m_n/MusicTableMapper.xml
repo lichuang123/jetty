@@ -32,6 +32,124 @@
     id, music_name, music_type, music_belongTo, music_context, music_createTime, music_createUser, 
     ATTRA, ATTRB, ATTRC, ATTRD, ATTRE, ATTRF, ATTRG
   </sql>
+  
+  <select id="searchMusic" parameterType="java.lang.String" resultType="java.util.Map" useCache="false">
+  	select 
+  		id,
+  		music_name
+  	from
+  		music_table
+  	where
+  		music_name
+  	like concat('%',concat(#{searchName},'%'))
+  </select>
+  
+  <select id="selectMusicBelongTo" resultType="java.util.Map" useCache="false">
+  	SELECT DISTINCT
+		music_belongTo
+	FROM
+		music_table
+  </select>
+  
+  <select id="musicDownload" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		mt.music_name music_name,
+		mtc.music_down_address music_down_address
+	FROM
+		music_table mt,
+		music_table_count mtc
+	WHERE
+		mt.id = mtc.music_id
+	AND mtc.id = #{mtcId}
+  </select>
+  
+  <update id="updateLikeOrHiteCount" parameterType="java.util.Map" flushCache="false">
+  	UPDATE 
+  		music_table_count
+  	SET 
+  		<if test="like != null">
+			music_like_count=#{count}
+		</if>
+		<if test="hite != null">
+			music_hite_count=#{count}
+		</if>
+		<if test="play != null">
+			music_play_count=#{count}
+		</if>
+  	WHERE
+  		id = #{mtcId}
+  </update>
+  
+  <select id="selectLikeOrHiteCount" parameterType="java.util.Map" resultType="java.lang.Integer" useCache="false">
+ 	SELECT
+		<if test="like != null">
+			music_like_count
+		</if>
+		<if test="hite != null">
+			music_hite_count
+		</if>
+		<if test="play != null">
+			music_play_count
+		</if>
+	FROM
+		music_table_count
+	WHERE
+		id = #{mtcId}
+  </select>
+  
+  <select id="selectPlayLikeHiteCount" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		music_play_count,
+		music_like_count,
+		music_hite_count
+	FROM
+		music_table_count
+	WHERE
+		id = #{mtcId}
+  </select>
+  
+  <select id="showMusicPermission" parameterType="java.lang.Integer" resultType="java.util.Map" useCache="false">
+  	SELECT
+		mt.id id,
+		mtc.id mtcId,
+		mt.music_name music_name,
+		mt.music_belongTo music_belongTo,
+		mt.music_context music_context,
+		mt.music_photo_url music_photo_url,
+		mt.music_type music_type,
+		mtc.music_address music_address,
+		mtc.music_down_address music_down_address,
+		mtc.music_hite_count music_hite_count,
+		mtc.music_like_count music_like_count,
+		mtc.music_order music_order,
+		mtc.music_play_count music_play_count
+	FROM
+		music_table mt,
+		music_table_count mtc
+	WHERE
+		mt.id = mtc.music_id
+	AND
+		mt.id = #{id}
+  </select>
+  
+  <select id="selectHostMusic" parameterType="java.util.Map" resultType="java.util.Map" useCache="false">
+  	SELECT
+		id,
+		music_belongTo,
+		music_context,
+		music_name,
+		music_photo_url,
+		music_type
+	FROM
+		music_table
+	WHERE
+		1=1
+	<if test="belongto != null">
+		and music_belongTo = #{belongto}
+	</if>
+	LIMIT #{start},#{pageSize}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -101,6 +219,9 @@
       <if test="musicCreateuser != null" >
         music_createUser,
       </if>
+      <if test="musicPhotoUrl != null">
+      	music_photo_url,
+      </if>
       <if test="attra != null" >
         ATTRA,
       </if>
@@ -141,6 +262,9 @@
       </if>
       <if test="musicCreateuser != null" >
         #{musicCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="musicPhotoUrl != null">
+      	#{musicPhotoUrl,jdbcType=VARCHAR},
       </if>
       <if test="attra != null" >
         #{attra,jdbcType=VARCHAR},

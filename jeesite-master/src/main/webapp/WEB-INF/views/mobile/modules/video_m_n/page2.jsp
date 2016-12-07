@@ -16,21 +16,17 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="Jason">
-    <link href="${pageContext.request.contextPath}/static/video_m_n/css/style.css" type="text/css" rel="stylesheet" media="screen" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/jquery-1.12.4.min.js"></script>
 </head>
 
 <body>
-    <header class="header pr">详情<a href="selectHostVideo.do" class="back pa">&lt;返回</a><!-- <a href="" class="search-icon pa">搜索</a> --></header>
+    <header class="header pr">详情<a href="selectThreeTypeVideoHost.do" class="back pa">&lt;返回</a><!-- <a href="" class="search-icon pa">搜索</a> --></header>
     <section class="page-box clearfix">
 	        <video id="myVideo" controls="controls" poster="${list_0.video_photo_url }" width="100%">
 	            <source src="${list_0.video_address }" type="video/mp4" id="sourceId"/>
-	            <!-- <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.webm" type="video/webM" />
-	            <source src="http://m.skye-intelligence.com/video/20160328_Skye_Orbit_m.ogv" type="video/ogg" /> -->
 	            <p>Your browser does not support the video tag.</p>
 	        </video>
 	        <input type="hidden" id="currentTime"/>
-	        <section class="page-links clearfix"><a onclick="play('${list_0.video_address }');" id="playOrpused">播放</a><a onclick="downLoad('${list_0.vtcId}')">下载</a></section>
+	        <section class="page-links clearfix"><a onclick="play('${list_0.video_address }');" id="playOrpused">播放</a><a onclick="downLoad();">下载</a></section>
 	        <section class="page-info clearfix">
 	            <header class="page-info-hd">
 	            	<span>
@@ -48,18 +44,21 @@
 	        </section>
         <section class="page-related clearfix">
 		<em>剧集</em>
+		<input type="hidden" id="video_id" value="${list_0.id }"/>
 		<section class="page-related-list-2" id="chooseOrderF">
 			<c:choose>
 	    		<c:when test="${not empty list }">
 	    			<c:forEach items="${list }" var="video">
-	    					<c:if test="${video.video_order<=10 }">
+	    					<c:if test="${video.video_order<=15 }">
 	    						<a id="chooseOrder${video.video_order }" onclick="chooseOrder('${video.video_address}','${video.video_order }','${video.vtcId }')" <c:if test="${video.video_order==1 }"> class="on"</c:if>>${video.video_order }</a>
 	    					</c:if>
-	    					<c:if test="${video.video_order>10 }"><a href="">更多&gt;&gt;</a></c:if>
+	    					<c:if test="${video.video_order>15 }">
+	    						<a id="chooseOrder${video.video_order }" onclick="chooseOrder('${video.video_address}','${video.video_order }','${video.vtcId }')" style="display: none;">${video.video_order }</a>
+	    					</c:if>
 	    			</c:forEach>
 	    		</c:when>
 	    	</c:choose>
-			
+			<c:if test="${more == 14 }"><a onclick="removeHdclass();" style="width: auto;font-size: .875rem;font-weight: 100;" id="showMore">更多&gt;&gt;</a></c:if>
 		</section>
         </section>
     </section>

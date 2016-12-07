@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,26 +16,27 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="Jason">
-<link href="css/style.css" type="text/css" rel="stylesheet" media="screen" />
 </head>
 
 <body>
 <section class="search-box">
 	<section class="search-con pr">
-    	 <input type="" name="" placeholder="请输入关键词搜索" ／><span class="pa">取消</span>
+		<input type="hidden" id="searchOrback" value="1"/>
+    	 <input type="text" id="searchName" placeholder="请输入关键词搜索" ／><span class="pa" id="confirmId" onclick="searchVideo();">取消</span>
     </section>
     <section class="search-list">
     	<header>热门搜索</header>
-        <section class="search-list-con">
-        <a href="">热门搜索关键词1</a>
-        <a href="">热门搜索关键词1</a>
-        <a href="">热门搜索关键词1</a>
-        <a href="">热门搜索关键词1</a>
-        <a href="">热门搜索关键词1</a>
-        <a href="">热门搜索关键词1</a>
-        <a href="">热门搜索关键词1</a>
+        <section class="search-list-con" id="search-list-con">
+        <c:choose>
+        	<c:when test="${not empty v_list }">
+        		<c:forEach items="${v_list }" var="video">
+        			<a onclick="showVideoPermission(${video.id});">${video.video_name }</a>
+        		</c:forEach>
+        	</c:when>
+        </c:choose>
         </section>
     </section>
 </section>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/index.js"></script>
 </html>

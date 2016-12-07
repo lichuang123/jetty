@@ -75,6 +75,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Tijs Rademakers
  * @modify xuhuisheng 解决modeler发布的流程图，sequenceFlow不显示的问题
+ * 
  */
 public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants, ActivityProcessor {
 	

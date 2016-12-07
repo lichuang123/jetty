@@ -12,7 +12,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no">
 <meta name="wap-font-scale" content="no">
-<title>视频列表</title>
+<title>音频列表</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="Jason">
@@ -28,7 +28,7 @@
 			<section id="pullDown">
 	  			<span class="pullDownIcon"></span><span class="pullDownLabel">这是顶部...</span>
 	 		</section>
-	 		<header class="header pr">看视频<a href="selectThreeTypeVideoHost.do" class="back pa">&lt;返回</a></header>
+	 		<header class="header pr">听音乐<a href="goMusicListPage.do" class="back pa">&lt;返回</a></header>
 			<section class="list-box clearfix">
 	 		<section class="scroller-content" >
 	 			<section class="list-box-con clearfix" style="border-top:0;">
@@ -46,5 +46,5 @@
 
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/index.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/video_more_list.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/video_m_n/myjs/music_more_list.js"></script>
 </html>
