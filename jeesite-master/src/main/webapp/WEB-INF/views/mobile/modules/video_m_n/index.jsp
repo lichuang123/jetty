@@ -86,7 +86,7 @@
                     </div>
                     <div class="pagination"></div>
                 </section>
-                <section class="links clearfix"><a href="">影视专区</a><a href="">音频专区</a><a href="">阅读专区</a></section>
+                <section class="links clearfix"><a href="">影视专区</a><a href="">音频专区</a><a href="${pageContext.request.contextPath}/a/video_m_n/noveltable/getNovelPage">阅读专区</a></section>
                 <section class="list-box-con clearfix">
                     <header>热点视频<a href="">更多&gt;</a></header>
                     <ul class="list-box-con-s clearfix">
