@@ -18,7 +18,7 @@
 <link href="${pageContext.request.contextPath}/static/video_m_n/css/style.css" type="text/css" rel="stylesheet" media="screen" />
 </head>
 <style type="text/css">
-    .links a{width:23%;text-align: center;}
+    .links a{width:22%;text-align: center;}
 </style>
 
 <body>
