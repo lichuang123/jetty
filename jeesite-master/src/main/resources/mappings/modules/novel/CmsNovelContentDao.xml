@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.novel.dao.CmsNovelContentDao">
+    
+	<sql id="cmsNovelContentColumns">
+		a.id AS "id",
+		a.novel_id AS "novelId",
+		a.chapter_id AS "chapterId",
+		a.novel_name AS "novelName",
+		a.novel_content AS "novelContent",
+		a.createtime AS "createtime",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="cmsNovelContentJoins">
+	</sql>
+    
+	<select id="get" resultType="CmsNovelContent">
+		SELECT 
+			<include refid="cmsNovelContentColumns"/>
+		FROM cms_novel_content a
+		<include refid="cmsNovelContentJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsNovelContent">
+		SELECT 
+			<include refid="cmsNovelContentColumns"/>
+		FROM cms_novel_content a
+		<include refid="cmsNovelContentJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CmsNovelContent">
+		SELECT 
+			<include refid="cmsNovelContentColumns"/>
+		FROM cms_novel_content a
+		<include refid="cmsNovelContentJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO cms_novel_content(
+			novel_id,
+			chapter_id,
+			novel_name,
+			novel_content,
+			createtime
+		) VALUES (
+			#{novelId},
+			#{chapterId},
+			#{novelName},
+			#{novelContent},
+			#{createtime}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE cms_novel_content SET 	
+			novel_id = #{novelId},
+			chapter_id = #{chapterId},
+			novel_name = #{novelName},
+			novel_content = #{novelContent},
+			createtime = #{createtime}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE cms_novel_content SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

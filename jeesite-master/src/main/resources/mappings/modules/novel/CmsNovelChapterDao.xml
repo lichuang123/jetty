@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.novel.dao.CmsNovelChapterDao">
+    
+	<sql id="cmsNovelChapterColumns">
+		a.id AS "id",
+		a.chaptername AS "chaptername",
+		a.novel_id AS "novelId",
+		b.novel_name as novelName
+	</sql>
+	
+	<sql id="cmsNovelChapterJoins">
+		left join cms_novel b on a.novel_id = b.id
+	</sql>
+    
+	<select id="get" resultType="CmsNovelChapter">
+		SELECT 
+			<include refid="cmsNovelChapterColumns"/>
+		FROM cms_novel_chapter a
+		<include refid="cmsNovelChapterJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsNovelChapter">
+		SELECT 
+			<include refid="cmsNovelChapterColumns"/>
+		FROM cms_novel_chapter a
+		<include refid="cmsNovelChapterJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CmsNovelChapter">
+		SELECT 
+			<include refid="cmsNovelChapterColumns"/>
+		FROM cms_novel_chapter a
+		<include refid="cmsNovelChapterJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO cms_novel_chapter(		
+			chaptername,
+			novel_id
+		) VALUES (
+			#{chaptername},
+			#{novelId}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE cms_novel_chapter SET 	
+			chaptername = #{chaptername},
+			novel_id = #{novelId}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM cms_novel_chapter
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

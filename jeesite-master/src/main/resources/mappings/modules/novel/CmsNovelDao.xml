@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.novel.dao.CmsNovelDao">
+    
+	<sql id="cmsNovelColumns">
+		a.id AS "id",
+		a.novel_name AS "novelName",
+		a.novel_author AS "novelAuthor",
+		a.novel_image AS "novelImage",
+		a.novel_desc AS "novelDesc",
+		a.novel_category AS "novelCategory",
+		a.novel_status AS "novelStatus",
+		a.novel_apr_hit AS "novelAprHit",
+		a.novel_opp_hit AS "novelOppHit",
+		a.novel_createtime AS "novelCreatetime",
+		a.del_flag AS "delFlag",
+		cls.classifyname as "classifyName"
+	</sql>
+	
+	<sql id="cmsNovelJoins">
+		left join cms_novel_classify cls on a.novel_category = cls.id
+	</sql>
+    
+	<select id="get" resultType="CmsNovel">
+		SELECT 
+			<include refid="cmsNovelColumns"/>
+		FROM cms_novel a
+		<include refid="cmsNovelJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsNovel">
+		SELECT 
+			<include refid="cmsNovelColumns"/>
+		FROM cms_novel a
+		<include refid="cmsNovelJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="novelName != null and novelName != ''">
+				AND a.novel_name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{novelName}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{novelName}+'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{novelName}, '%')</if>
+			</if>
+		
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CmsNovel">
+		SELECT 
+			<include refid="cmsNovelColumns"/>
+		FROM cms_novel a
+		<include refid="cmsNovelJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO cms_novel(
+			novel_name,
+			novel_author,
+			novel_image,
+			novel_desc,
+			novel_category,
+			novel_status,
+			novel_apr_hit,
+			novel_opp_hit,
+			novel_createtime,
+			del_flag
+		) VALUES (
+		
+			#{novelName},
+			#{novelAuthor},
+			#{novelImage},
+			#{novelDesc},
+			#{novelCategory},
+			#{novelStatus},
+			#{novelAprHit},
+			#{novelOppHit},
+			#{novelCreatetime},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE cms_novel SET 	
+			novel_name = #{novelName},
+			novel_author = #{novelAuthor},
+			novel_image = #{novelImage},
+			novel_desc = #{novelDesc},
+			novel_category = #{novelCategory},
+			novel_status = #{novelStatus},
+			novel_apr_hit = #{novelAprHit},
+			novel_opp_hit = #{novelOppHit},
+			novel_createtime = #{novelCreatetime}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE cms_novel SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
