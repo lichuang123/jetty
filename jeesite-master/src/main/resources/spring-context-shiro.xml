@@ -18,6 +18,7 @@
 				/userfiles/** = anon
 				${adminPath}/cas = cas
 				${adminPath}/video_m_n/**= anon
+				${adminPath}/novel/**= anon
 				${adminPath}/login = authc
 				${adminPath}/logout = logout
 				${adminPath}/** = user
